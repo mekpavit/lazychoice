@@ -13,9 +13,9 @@ jobs:
     - name: Go to working directory
       run: |
         cd src/frontend
+        yarn start
     - name: Cypress run
       uses: cypress-io/github-action@v1
       with:
         working-directory: src/frontend 
-        start: yarn start
         wait-on: 'http://localhost:3000'
