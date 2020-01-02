@@ -13,6 +13,7 @@ jobs:
     - name: Go to working directory
       run: |
         cd src/frontend
+        yarn install
         yarn start
     - name: Cypress run
       uses: cypress-io/github-action@v1
