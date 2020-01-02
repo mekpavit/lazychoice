@@ -13,6 +13,6 @@ jobs:
       run: |
         cd src/frontend
         npm install
-        npm start
+        npm start &
     - name: Cypress run
       uses: cypress-io/github-action@v1
