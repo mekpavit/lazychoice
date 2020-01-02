@@ -14,5 +14,7 @@ jobs:
       uses: cypress-io/github-action@v1
       with:
         working-directory: src/frontend 
-        start: yarn start
+        start: |
+          cd src/frontend
+          yarn start
         wait-on: 'http://localhost:3000'
