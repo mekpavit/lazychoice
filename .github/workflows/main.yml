@@ -15,3 +15,4 @@ jobs:
       with:
         start: yarn start
         working-directory: src/frontend 
+        wait-on: 'http://localhost:3000'
