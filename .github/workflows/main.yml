@@ -16,3 +16,6 @@ jobs:
         npm start &
     - name: Cypress run
       uses: cypress-io/github-action@v1
+      with:
+        start: npm start
+        working-directory: src/frontend 
