@@ -90,7 +90,7 @@ function RestaurantRandomizer() {
 
   const [randomedRestaurant, setRandomedRestaurant] = useState({"name": "", "url": "", "location": ""})
 
-  const [selectedLocation, setSelectedLocation] = useState('')
+  const [selectedLocation, setSelectedLocation] = useState('Siam')
 
   const [isAlreadyRandom, setIsAlreadyRandom] = useState(false)
 
@@ -105,7 +105,15 @@ function RestaurantRandomizer() {
       setRandomedRestaurant({"name": "", "url": "", "location": ""})
       setIsAlreadyRandom(false)
     }
-    
+  }
+
+  function getLocationsFromRestaurants(restaurants) {
+     return restaurants.reduce((locations, restaurant) => {
+       if (locations.indexOf(restaurant.location) === -1) {
+         locations.push(restaurant.location)
+       }
+       return locations
+     }, [])
   }
 
   return (
@@ -120,7 +128,7 @@ function RestaurantRandomizer() {
       <Grid item xs={12}>
         <RestaurantInformation restaurants={restaurants} restaurant={randomedRestaurant}/>
         <RestaurantFilterForm 
-          locations={['Siam']} 
+          locations={getLocationsFromRestaurants(restaurants)} 
           selectedLocation={selectedLocation} 
           setSelectedLocation={setSelectedLocation} 
           onClickRandom={onClickRandom}
