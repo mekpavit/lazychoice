@@ -26,7 +26,7 @@ yarn start
 
 # Usage
 
-* Restaurant list can be changed by modifiying `src/frontend/restaurants.js`
+* Restaurant list can be changed by modifiying `src/frontend/src/restaurants.js`
 ```
 const restaurants = [
     {
