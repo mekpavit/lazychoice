@@ -90,7 +90,7 @@ function RestaurantRandomizer() {
 
   const [randomedRestaurant, setRandomedRestaurant] = useState({"name": "", "url": "", "location": ""})
 
-  const [selectedLocation, setSelectedLocation] = useState('Siam')
+  const [selectedLocation, setSelectedLocation] = useState(getLocationsFromRestaurants(restaurants)[0])
 
   const [isAlreadyRandom, setIsAlreadyRandom] = useState(false)
 
@@ -102,7 +102,7 @@ function RestaurantRandomizer() {
 
   function onSelectLocation(location) {
     setSelectedLocation(location)
-    setFilteredRestaurants(filterRestaurantsByLocation(restaurants, selectedLocation))
+    setFilteredRestaurants(filterRestaurantsByLocation(restaurants, location))
   }
 
   function onClickRandom() {
