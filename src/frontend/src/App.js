@@ -60,7 +60,7 @@ function RestaurantInformation(props) {
 function RestaurantFilterForm(props) {
 
   function handleChange(e) {
-    props.setSelectedLocation(e.target.value)
+    props.onSelectLocation(e.target.value)
   }
 
   function renderLocationOption(locations) {
@@ -94,11 +94,22 @@ function RestaurantRandomizer() {
 
   const [isAlreadyRandom, setIsAlreadyRandom] = useState(false)
 
+  const [filteredRestaurants, setFilteredRestaurants] = useState(filterRestaurantsByLocation(restaurants, selectedLocation))
+
+  function filterRestaurantsByLocation(restaurants, location) {
+    return restaurants.filter((restaurant) => {return restaurant.location === location})
+  }
+
+  function onSelectLocation(location) {
+    setSelectedLocation(location)
+    setFilteredRestaurants(filterRestaurantsByLocation(restaurants, selectedLocation))
+  }
+
   function onClickRandom() {
     if (!isAlreadyRandom) {
-      const randomedRestaurantIndex = Math.floor((restaurants.length * Math.random()))
+      const randomedRestaurantIndex = Math.floor((filteredRestaurants.length * Math.random()))
       setRandomedRestaurant(
-        restaurants[randomedRestaurantIndex]
+        filteredRestaurants[randomedRestaurantIndex]
       )
       setIsAlreadyRandom(true)
     } else {
@@ -126,11 +137,11 @@ function RestaurantRandomizer() {
       style={{ minHeight: '100vh' }}
     >
       <Grid item xs={12}>
-        <RestaurantInformation restaurants={restaurants} restaurant={randomedRestaurant}/>
+        <RestaurantInformation restaurants={filteredRestaurants} restaurant={randomedRestaurant}/>
         <RestaurantFilterForm 
           locations={getLocationsFromRestaurants(restaurants)} 
           selectedLocation={selectedLocation} 
-          setSelectedLocation={setSelectedLocation} 
+          onSelectLocation={onSelectLocation} 
           onClickRandom={onClickRandom}
           isAlreadyRandom={isAlreadyRandom}
         />
