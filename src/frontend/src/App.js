@@ -47,7 +47,7 @@ function RestaurantInformation(props) {
         <Typography align='center' variant='h4'><b>RESTAURANT NAME</b></Typography>
       </Container>
       <Container fixed>
-        <Typography align='center' variant='h4'>
+        <Typography align='center' variant='h4' noWrap={true}>
           <Link href={props.restaurant.url} data-cy="restaurant-name">
             {props.restaurant.name ? props.restaurant.name : props.restaurants[currentRestaurantsIndex].name}
           </Link>
